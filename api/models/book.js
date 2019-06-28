@@ -4,17 +4,9 @@ const mongoose = require('mongoose');
 const BookSchema = new mongoose.Schema({
     title: String,
     createdAt: Date,
-    note: {
-        type: Number,
-        min: 0,
-        max: 5
-    },
     year: {
         type: Number,
         min: 1900
-    },
-    img: {
-        type: String
     },
     category: {
         type: String,
