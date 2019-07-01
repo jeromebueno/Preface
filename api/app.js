@@ -4,6 +4,7 @@ const db = require('./lib/db');
 const BookRouter = require('./routes/book');
 const UserRouter = require('./routes/user');
 const RootRouter = require('./routes/root');
+const getData = require('./provider/getData');
 
 const app = express();
 console.log("\n\n\n\n|-------  PREFACE REST API  -------|");
@@ -16,6 +17,7 @@ app.use('/books', BookRouter);
 app.use('/users', UserRouter);
 
 app.listen(3003, () => console.log("|--> 📡 HTTP Ready [:3003]"));
+getData();
 
 db.once('open', () => {});
 

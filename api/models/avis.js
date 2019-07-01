@@ -3,24 +3,12 @@ const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
     title: String,
-    createdAt: Date,
-    date: {
+    description: String,
+    score: {
         type: Number,
-        min: 500
-    },
-    notation: {
-        type: Object
-    },
-    author: {
-        type: String,
-    },
-    description: {
-        type: String,
-    },
-    type: {
-        type: Array,
-    },
-    image: String
+        min: 0,
+        max: 5
+    }
 });
 
 BookSchema.methods.onScreen = function() {
@@ -32,8 +20,8 @@ BookSchema.pre('save', function(next) {
     next();
 });
 
-BookSchema.post('save', function(book) {
-    console.log(`${book.title} saved.`);
+BookSchema.post('save', function(movie) {
+    console.log(`${movie.title} saved.`);
 });
 
 module.exports = db.model('Book', BookSchema);
