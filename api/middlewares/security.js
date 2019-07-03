@@ -9,7 +9,7 @@ const verify = (req, res, next) => {
         verifyToken(authHeader.replace('Bearer ', '')).then(user => {
             req.user = user;
             next();
-        }).catch(err => res.status(401).send("JWT TOKEN invalid"))
+        }).catch(err => { console.log(err);res.status(401).send("JWT TOKEN invalid")})
     }
 }
 

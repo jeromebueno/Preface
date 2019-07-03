@@ -20,8 +20,8 @@ AvisSchema.pre('save', function(next) {
     next();
 });
 
-AvisSchema.post('save', function(movie) {
-    console.log(`${movie.title} saved.`);
+AvisSchema.post('save', function(avis) {
+    console.log(`${avis.title} saved.`);
 });
 
 module.exports = db.model('Avis', AvisSchema);
