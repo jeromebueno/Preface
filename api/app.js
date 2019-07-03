@@ -5,6 +5,7 @@ const db = require('./lib/db');
 const BookRouter = require('./routes/book');
 const UserRouter = require('./routes/user');
 const RootRouter = require('./routes/root');
+const AvisRouter = require('./routes/avis');
 const verifyToken = require('./middlewares/security');
 const getData = require('./provider/getData');
 
@@ -17,13 +18,14 @@ app.use('/', RootRouter);
 app.use(verifyToken);
 app.use('/book', BookRouter);
 app.use('/user', UserRouter);
+app.use('/avis', AvisRouter);
 
 app.listen(3003, () => console.log("|--> 📡 HTTP Ready [:3003]"));
 
 isOnline().then(online => {
     if(online){
         console.log("|--> 💾 Update database with books");
-        //getData();
+        getData();
     }else{
         console.log("|--> 💾 Unable to update database, no internet connection");
     }
