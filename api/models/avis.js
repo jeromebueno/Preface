@@ -1,7 +1,7 @@
 const db = require('../lib/db');
 const mongoose = require('mongoose');
 
-const BookSchema = new mongoose.Schema({
+const AvisSchema = new mongoose.Schema({
     title: String,
     description: String,
     score: {
@@ -11,17 +11,17 @@ const BookSchema = new mongoose.Schema({
     }
 });
 
-BookSchema.methods.onScreen = function() {
+AvisSchema.methods.onScreen = function() {
     return Date.now() > new Date(`${this.year}-01-01`);
 }
 
-BookSchema.pre('save', function(next) {
+AvisSchema.pre('save', function(next) {
     console.log(`Saving ${this.title} ...`);
     next();
 });
 
-BookSchema.post('save', function(movie) {
+AvisSchema.post('save', function(movie) {
     console.log(`${movie.title} saved.`);
 });
 
-module.exports = db.model('Book', BookSchema);
+module.exports = db.model('Avis', AvisSchema);
