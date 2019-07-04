@@ -21,11 +21,19 @@ const BookSchema = new mongoose.Schema({
         type: Array,
     },
     image: String
+}, { toJSON: { virtuals: true } });
+
+BookSchema.virtual('avis', {
+    ref: 'Avis',
+    localField: '_id',
+    foreignField: 'bookId',
+    justOne: false // set true for one-to-one relationship
 });
+
 
 BookSchema.methods.onScreen = function() {
     return Date.now() > new Date(`${this.year}-01-01`);
-}
+};
 
 BookSchema.pre('save', function(next) {
     console.log(`Saving ${this.title} ...`);

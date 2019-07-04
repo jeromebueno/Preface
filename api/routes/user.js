@@ -28,5 +28,12 @@ router.put("/:id", (req, res) => {
     user.save();
 });
 
+// user/1/avis
+router.get("/:id/avis/", (req, res) => {
+    const query = User.findById(req.params.id).populate('avis');
+    query.exec((err, user) => {
+        return res.status(200).json({ user, avis: user.avis })
+    })
+});
 
 module.exports = router;
