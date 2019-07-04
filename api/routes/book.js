@@ -21,6 +21,14 @@ router.get("/:id", (req, res) => {
         });
 });
 
+// book/1
+router.get("/:id/avis/", (req, res) => {
+    const query = Book.findById(req.params.id).populate('avis');
+    query.exec((err, book) => {
+        return res.status(200).json({ book, avis: book.avis })
+    })
+});
+
 router.post('/', (req, res) => {
     const book = new Book(req.body);
     book.save()

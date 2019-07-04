@@ -19,8 +19,18 @@ const UserSchema = new mongoose.Schema({
     },
     dob: Date,
     termsAccepted: Boolean,
-    termsAcceptedDate: Date
+    termsAcceptedDate: Date,
+    avisForUser: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Avis' }]
+}, { toJSON: { virtuals: true } });
+
+
+UserSchema.virtual('avis', {
+    ref: 'Avis',
+    localField: '_id',
+    foreignField: 'userId',
+    justOne: false // set true for one-to-one relationship
 });
+
 
 UserSchema.pre('save', function (next) {
     bcrypt.genSalt(10).then(salt => {

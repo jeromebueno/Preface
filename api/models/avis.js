@@ -8,12 +8,20 @@ const AvisSchema = new mongoose.Schema({
         type: Number,
         min: 0,
         max: 5
-    }
+    },
+    bookId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
 });
 
 AvisSchema.methods.onScreen = function() {
     return Date.now() > new Date(`${this.year}-01-01`);
-}
+};
 
 AvisSchema.pre('save', function(next) {
     console.log(`Saving ${this.title} ...`);
