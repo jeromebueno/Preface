@@ -8,24 +8,34 @@ const RootRouter = require('./routes/root');
 const AvisRouter = require('./routes/avis');
 const verifyToken = require('./middlewares/security');
 const getData = require('./provider/getData');
+var cors = require('cors');
 
 const app = express();
+
+var corsOptions = {
+    origin : '*'
+}
 console.log("\n\n\n\n|-------  PREFACE REST API  -------|");
 
 app.use(bodyparser.json());
+app.use(cors(corsOptions));
 // ROUTES
 app.use('/', RootRouter);
 app.use(verifyToken);
 app.use('/book', BookRouter);
 app.use('/user', UserRouter);
 app.use('/avis', AvisRouter);
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    next();
+  });
 
 app.listen(3003, () => console.log("|--> 📡 HTTP Ready [:3003]"));
 
 isOnline().then(online => {
     if(online){
         console.log("|--> 💾 Update database with books");
-        //getData();
+        getData();
     }else{
         console.log("|--> 💾 Unable to update database, no internet connection");
     }
