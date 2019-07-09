@@ -4,7 +4,8 @@ import Header from './components/Utils/Header';
 import Home from './components/Home'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from 'styled-components'
-
+import Book from './components/Book/Book';
+import BookProvider from './context/BookProvider';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           <Router>
           <div>
             <Route exact path="/" component={Home} />
+            <BookProvider>
+              <Route exact path="/book/:id" component={Book} />
+            </BookProvider>
           </div>
         </Router>
       </div>
