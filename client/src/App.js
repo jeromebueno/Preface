@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Utils/Header';
+import Home from './components/Home'
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from 'styled-components'
+import Book from './components/Book/Book';
+import BookProvider from './context/BookProvider';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Body>
+      <div className="App">
+        <Header/>
+          <Router>
+          <div>
+            <Route exact path="/" component={Home} />
+            <BookProvider>
+              <Route exact path="/book/:id" component={Book} />
+            </BookProvider>
+          </div>
+        </Router>
+      </div>
+    </Body>
   );
 }
+
+const Body = styled.div`
+  background: #F6F8F9;
+  height:100vh
+`
 
 export default App;
