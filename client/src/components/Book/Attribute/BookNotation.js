@@ -11,7 +11,10 @@ export default function BookNotation(props) {
     return (
         <div>
             <Div>
-                <Rating initialRating={props.notation.note} readonly/>
+                <Rating initialRating={props.notation.note} 
+                  emptySymbol={<img src="/src/img/star-empty.png" className="icon" />}
+                  fullSymbol={<img src="img/star-full.png" className="icon" />}
+                  readonly/>
             </Div>
             <Div>{props.notation.note}/5</Div>
             <Div>{props.notation.numberOfReviews} avis</Div>

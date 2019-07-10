@@ -1,20 +1,14 @@
-import React,{useContext,useEffect,useState,useRef} from 'react';
-import AdviceContext from '../../context/AdviceContext'
+import React from 'react';
 import BookNotation from '../Book/Attribute/BookNotation'
 import styled from 'styled-components';
 
 export default function AdviceCard(props) {
-  const context = useContext(AdviceContext)
-  const ref = useRef();
   const notation = {
       numberOfReviews : 84,
       note: 4
   }
 
-  useEffect(() => { // ComponentDidMount
-    context.getAdvices(props.id);
-    ref.current = true;
-  }, []);
+  console.log(props.advice)
 
   return (
     <Container> 

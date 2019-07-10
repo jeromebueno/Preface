@@ -11,23 +11,25 @@ export default function Book({ match }) {
   
   useEffect(() => { // ComponentDidMount
     context.findBook(match.params.id)
+    console.log(context.boo)
     ref.current = true;
   }, []);
 
   return (
     <Container> 
-      <Test>
-      { !(context.book._id == undefined) ?
-        <BookCard book={context.book} key={context.book._id}/>
-        : null
+      { !(context.book.book == undefined) ?
+      <>
+        <Test>
+          <BookCard book={context.book.book} key={context.book.book._id}/>
+          <GiveAdviceCard/>
+        </Test>
+        <h3>Avis des utilisateurs</h3>
+        <Test>
+          <AdviceCard advice={context.book.avis}/>
+          <AdviceCard/>
+        </Test>
+      </> : null
       }
-      <GiveAdviceCard/>
-      </Test>
-      <h3>Avis des utilisateurs</h3>
-      <Test>
-        <AdviceCard id={match.params.id}/>
-        <AdviceCard/>
-      </Test>
     </Container>
   );
 }
