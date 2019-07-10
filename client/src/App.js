@@ -12,7 +12,7 @@ function App() {
     <Body>
       <div className="App">
         <Header/>
-          <Router>
+          <Router>  
           <div>
             <Route exact path="/" component={Home} />
             <BookProvider>

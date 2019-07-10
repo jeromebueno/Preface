@@ -12,7 +12,8 @@ export default class UserProvider extends React.Component {
                 body: JSON.stringify(user)
                 }).then(res =>
                     res.json()
-                    .then(data => {localStorage.setItem('token',JSON.stringify(data.token)) 
+                    .then(data => {
+                                  localStorage.setItem('token',JSON.stringify(data.token)) 
                                   this.setState({logged:true})
                                 })
                 ).catch(err => console.log(err));

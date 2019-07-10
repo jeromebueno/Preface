@@ -21,7 +21,7 @@ export default class BookProvider extends React.Component {
           ).catch(err => console.log(JSON.stringify(err)));
       },
       findBook : (id) => {
-        fetch('http://localhost:3003/book/'+id, {
+        fetch('http://localhost:3003/book/'+id+'/avis', {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default class BookProvider extends React.Component {
                   book: data
                 })})
           ).catch(err => console.log(JSON.stringify(err)));
-      }
+      },
     };
   
     render() {

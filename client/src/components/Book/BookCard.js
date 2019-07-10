@@ -21,8 +21,7 @@ export default function BookCard(props) {
               </Text>
             </>
             : null
-          },
-          ,
+          }
 
           <BadgeContainer>
             {
@@ -46,7 +45,8 @@ const Card = styled.div`
   max-height: 345px;
   background: #FFFFFF;
   overflow: hidden;
-  margin-bottom: 5% ;
+  margin: 5% ;
+  display:inline-block;
 `
 
 const BookImage = styled.img`
@@ -59,6 +59,7 @@ const BookImage = styled.img`
 `
 
 const Part = styled.div`
+  width:250px;
   float: left;
 `
 
