@@ -5,7 +5,8 @@ const BookContext = createContext({
    book:{},
    loadBooks : () => {},
    findBook : (id) => {},
-   findBookWithAdvice :(id) => {}
+   findBookWithAdvice :(id) => {},
+   sendAdvice: (advice) => {}
 })
 
 export default BookContext
