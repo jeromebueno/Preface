@@ -4,17 +4,15 @@ import styled from 'styled-components';
 
 export default function AdviceCard(props) {
   const notation = {
-      numberOfReviews : 84,
-      note: 4
+      numberOfReviews : null,
+      note: props.advice.score
   }
-
-  console.log(props.advice)
 
   return (
     <Container> 
-        <Title>Mon avis</Title>
+        <Title>{props.advice.title}</Title>
         <BookNotation notation={notation}/>
-        <Description>Voici un avis, il permet de donner un avis sur un livre et de savoir si il est bien</Description>
+        <Description>{props.advice.description}</Description>
     </Container>
   );
 }

@@ -11,7 +11,6 @@ export default function Book({ match }) {
   
   useEffect(() => { // ComponentDidMount
     context.findBook(match.params.id)
-    console.log(context.boo)
     ref.current = true;
   }, []);
 
@@ -25,8 +24,8 @@ export default function Book({ match }) {
         </Test>
         <h3>Avis des utilisateurs</h3>
         <Test>
-          <AdviceCard advice={context.book.avis}/>
-          <AdviceCard/>
+          {context.book.avis.map(advice => <AdviceCard advice={advice}/>) }
+         
         </Test>
       </> : null
       }

@@ -35,6 +35,18 @@ export default class BookProvider extends React.Component {
                 })})
           ).catch(err => console.log(JSON.stringify(err)));
       },
+      sendAdvice: (advice) => {
+        const userId = JSON.parse(localStorage.getItem('logged'));
+        fetch('http://localhost:3003/user/'+ userId +'/avis', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+          },
+          body: JSON.stringify(advice)
+          }).then(() => {}
+          ).catch(err => console.log(JSON.stringify(err)));
+      }
     };
   
     render() {
