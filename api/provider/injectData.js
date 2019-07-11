@@ -43,8 +43,7 @@ function inject (data){
                     'notation': {
                         'note': 4,
                         'numberOfReviews' : 120
-                    },
-                    'avisForBook': []
+                    }
                 });
                 book.save();
                 i++;
