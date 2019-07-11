@@ -20,7 +20,6 @@ const UserSchema = new mongoose.Schema({
     dob: Date,
     termsAccepted: Boolean,
     termsAcceptedDate: Date,
-    avisForUser: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Avis' }]
 }, { toJSON: { virtuals: true } });
 
 
