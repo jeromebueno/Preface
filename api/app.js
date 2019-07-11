@@ -2,6 +2,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const isOnline = require('is-online');
 const db = require('./lib/db');
+const TrendRouter = require('./routes/trend');
 const BookRouter = require('./routes/book');
 const UserRouter = require('./routes/user');
 const RootRouter = require('./routes/root');
@@ -14,19 +15,22 @@ const app = express();
 
 var corsOptions = {
     origin : '*'
-}
+};
+
 console.log("\n\n\n\n|-------  PREFACE REST API  -------|");
 
 app.use(bodyparser.json());
 app.use(cors(corsOptions));
+
 // ROUTES
 app.use('/', RootRouter);
+app.use('/trends', TrendRouter);
 app.use(verifyToken);
 app.use('/book', BookRouter);
 app.use('/user', UserRouter);
 app.use('/avis', AvisRouter);
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   });
 
