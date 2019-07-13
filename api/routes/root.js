@@ -26,10 +26,10 @@ router.post("/login", (req, res) => {
 
 router.post("/register", (req, res) => {
     const user = new User(req.body);
-
-    user.save()
+    user.register()
         .then(data => res.status(201).send(data))
         .catch(error => {
+            console.log(error);
             if (error.name === "ValidationError") {
                 res.status(400).json(error.errors);
             } else {

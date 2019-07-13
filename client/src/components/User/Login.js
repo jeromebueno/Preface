@@ -24,21 +24,21 @@ const Login = () => {
     const user = {
         "email": email,
         "password": password
-    }	
-    context.login(user)
+    }
   }
 
   return (
     <Container>
-        <h2>Se connecter</h2>
         <Form onSubmit={handleSubmit}>
-            <label htmlFor="username">Email</label>
-            <input id="email" name="email" type="email" onChange={handleChange}/>
-
-            <label htmlFor="password" >Password</label>
-            <input id="password" name="password" type="password" onChange={handleChange}/>
-
-            <button>Valider</button>
+            <div className="form-group">
+            <label className="form-label" htmlFor="email">Email</label>
+            <input className="form-input"  id="email" name="email" type="email" onChange={handleChange}/>
+            </div>
+            <div className="form-group">
+            <label className="form-label" htmlFor="password" >Password</label>
+            <input  className="form-input" id="password" name="password" type="password" onChange={handleChange}/>
+            </div>
+            <button  className="btn btn-primary mt-2">Se connecter</button>
         </Form>
     </Container>
   );
