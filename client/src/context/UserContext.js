@@ -4,6 +4,5 @@ const UserContext = createContext({
   logged: false,
   login: (user) => {},
   register : (user) => {}
-})
-
+});
 export default UserContext;

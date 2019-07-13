@@ -10,7 +10,7 @@ export default class BookProvider extends React.Component {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+              'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('token'))
           },
           }).then(res =>
               res.json()
@@ -25,7 +25,7 @@ export default class BookProvider extends React.Component {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+              'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('token'))
           },
           }).then(res =>
               res.json()
@@ -36,12 +36,12 @@ export default class BookProvider extends React.Component {
           ).catch(err => console.log(JSON.stringify(err)));
       },
       sendAdvice: (advice) => {
-        const userId = JSON.parse(localStorage.getItem('logged'));
+        const userId = JSON.parse(sessionStorage.getItem('logged'));
         fetch('http://localhost:3003/user/'+ userId +'/avis', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+              'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('token'))
           },
           body: JSON.stringify(advice)
           }).then(() => {}

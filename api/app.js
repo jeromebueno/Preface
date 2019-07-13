@@ -39,7 +39,7 @@ app.listen(3003, () => console.log("|--> 📡 HTTP Ready [:3003]"));
 isOnline().then(online => {
     if(online){
         console.log("|--> 💾 Update database with books");
-        getData();
+        //getData();
     }else{
         console.log("|--> 💾 Unable to update database, no internet connection");
     }

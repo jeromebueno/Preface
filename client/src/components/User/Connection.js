@@ -7,39 +7,58 @@ import UserContext from '../../context/UserContext';
 const Connection = () => {
   const [open, setOpen] = useState(false);
   const [wantConnect, setWantConnect] = useState(true);
-  const context = useContext(UserContext)
+  const context = useContext(UserContext);
+  let button;
+  if(context.logged){
+    button =<> <a className="btn btn-primary float-right" href="#logModal" component="a">Profile</a></>
+  }
+else{
+  button = <>     <a className="btn btn-primary float-right" href="#logModal" component="a">Connexion / inscription</a>
+      <div className="modal modal-lg" id="logModal">
+          <a href="#close" className="modal-overlay" aria-label="Close"></a>
+          <div className="modal-container">
+              <div className="modal-header">
+                  <a href="#close" className="btn btn-clear float-right" aria-label="Close"></a>
+                  <div className="modal-title h5">{ wantConnect ? "Se connecter" : "S'inscrire"}</div>
+              </div>
+              <div className="modal-body">
+                  <div className="content">
+                      <div>
+                          {wantConnect ?
+                              <Login/> :
+                              <Register/>}
+                      </div>
 
+                  </div>
+              </div>
+              <div className="modal-footer float-left">
+                  <button className="btn btn-link" onClick={() => {setWantConnect(!wantConnect)}}>{ wantConnect ? "Je n'ai pas encore de compte (gratuit)" : "J'ai déjà un compte"}</button>
+
+              </div>
+
+
+
+          </div>
+      </div></>
+}
   return (
-    <Container  open={open}>
-        <StyledButton onClick={() => {setOpen(!open)}} logged={context.logged}>{open? "Fermer" : "Connexion"}</StyledButton>
-        { open ?
-            <div>
-            {wantConnect ?
-                <Login/> :
-                <Register/>}
-            <a href="#" onClick={() => {setWantConnect(!wantConnect)}}>{ wantConnect ? "S'inscrire" : "Se connecter"}</a>
-            </div>
-            : null
-        }
-    </Container>
+      <>
+          {button}
+        </>
   );
 }
 
 export default Connection;
 
 const StyledButton = styled.button`
-    background:black;
+    background: #303C41;
     color:white;
+    height: 32px;
+    font-familly: 'Fira Sans', sans-serif;
+    font-weight: 500
 `
 
 const Container = styled.div`
-  line-height: 10vh;
   text-align:center; 
-  background: ${props => props.open ? 'white' : 'none'};
-  position:absolute;
-  box-shadow: ${props => props.open ? '0 1px 2px 0 rgba(0,0,0,.15)' : 'none'};
-  margin: 20px;
-  margin-bottom: 50px;
-  display: inline-block;
 `
 
