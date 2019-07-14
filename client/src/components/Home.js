@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchBar from './Utils/SearchBar'
-import TrendsProvider from '../context/TrendsProvider'
 import BookList from './Book/BookList'
 import styles from 'styled-components'
+import BookProvider from "../context/BookProvider";
 
 const Container = styles.div`
    margin-top: 72px
@@ -15,11 +15,13 @@ export default function Home() {
         <h2>Donnez un avis à vos lectures</h2>
         <SearchBar/>
       </div>
+
       <div style={ {marginTop: 32}}>
+          <div className="divider mt-2 mb-2"></div>
         <h2>Trends</h2>
-        <TrendsProvider>
+        <BookProvider>
             <BookList miniature={true}/>
-        </TrendsProvider>
+        </BookProvider>
       </div>
     </Container>
   );
