@@ -11,7 +11,7 @@ export default function AdviceCard(props) {
   return (
     <Container> 
         <Title>{props.advice.title}</Title>
-        <BookNotation notation={notation}/>
+        <BookNotation notation={notation} readonly/>
         <Description>{props.advice.description}</Description>
     </Container>
   );

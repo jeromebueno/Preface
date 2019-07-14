@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useState} from 'react';
 import styled from 'styled-components';
 import BookNotation from '../Book/Attribute/BookNotation';
 import BookContext from '../../context/BookContext';
@@ -6,12 +6,7 @@ import BookContext from '../../context/BookContext';
 export default function GiveAdviceCard() {
   const context = useContext(BookContext)
 
-  const notation = {
-        numberOfReviews : 84,
-        note: 4
-  }
-
-  let score = React.createRef();
+  let [score,setScore] = useState();
   let title = React.createRef();
   let text = React.createRef();
   
@@ -21,7 +16,7 @@ export default function GiveAdviceCard() {
     const advice = {
       "title": title.current.value,
       "description": text.current.value,
-      "score": score.current.value,
+      "score": score,
       "userId": JSON.parse(localStorage.getItem('logged')),
       "bookId": window.location.pathname.split('/').slice(-1)[0]
     }
@@ -32,8 +27,7 @@ export default function GiveAdviceCard() {
   return (
     <Container> 
       <form onSubmit={handleSubmit}>
-        <input type="number" id="score" name="score" ref={score} required/>
-        <BookNotation notation={notation} readonly/>
+        <BookNotation setScore={setScore} />
         <input type="text"  id="title" name="title" ref={title} required/>
         <textarea type="text"  id="text" name="text" ref={text} required/>
         <button>Envoyer</button>

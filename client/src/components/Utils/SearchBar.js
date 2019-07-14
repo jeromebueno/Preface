@@ -34,7 +34,6 @@ export default function SearchBar() {
     <Container>
         <ReactSearchBox
         placeholder="Find a book, a comic, and more ..."
-        value="Doe"
         data={data}
         callback={record => console.log(record)}/>
     </Container>

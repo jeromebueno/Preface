@@ -6,7 +6,6 @@ import BookNotation from './Attribute/BookNotation'
 
 export default function BookCard(props) {
   const miniature = props.miniature ? true : false;
-  
   return (
     <Card miniature = {miniature}>
       <Part>

@@ -6,7 +6,7 @@ const Badge = styled.div`
     margin-left:4px;
     display: inline-block;
     border-radius: 30px;
-    background: ${props => props.main ? '#1EAEDC' : '#E5E7E9'}
+    background: ${props => props.main ? '#1EAEDC' : '#E5E7E9'};
 `
 
 const BadgeText = styled.div`
