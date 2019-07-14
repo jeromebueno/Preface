@@ -25,9 +25,9 @@ app.use(cors(corsOptions));
 // ROUTES
 app.use('/', RootRouter);
 app.use('/trends', TrendRouter);
-app.use(verifyToken);
 app.use('/book', BookRouter);
 app.use('/user', UserRouter);
+app.use(verifyToken);
 app.use('/avis', AvisRouter);
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

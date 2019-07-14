@@ -1,76 +1,115 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from 'styled-components'
 import BookType from './Attribute/BookType'
 import BookNotation from './Attribute/BookNotation'
 
 export default function BookCard(props) {
-  const miniature = props.miniature ? true : false;
-  return (
-    <Card miniature = {miniature}>
-      <Part>
-        <BookImage img={props.book.image} miniature = {miniature}></BookImage>
-      </Part>
-        <div style={{textAlign: "left"}}>
-          { !miniature ?
-            <>
-              <h1>{props.book.title }</h1>
-              <Text>
-                {props.book.description }
-              </Text>
-            </>
-            : null
-          }
-
-          <BadgeContainer>
+    const miniature = props.miniature ? true : false;
+    return (
+        <>
             {
-              props.book.type.map((type) =>
-                <BookType type={type.name} main={type.main}/>
-              )
+                !miniature ?
+                    <>
+                        <Card style={{padding: 32}}className="card" miniature={miniature}>
+                            <div className="columns">
+                                <div className="column col-4 col-sm-12">
+                            <Part className="card-image">
+                                <BookImageLarge img={props.book.image}></BookImageLarge>
+                            </Part>
+                                </div>
+                                <div className="column col-8 col-sm-12">
+                            <div style={{textAlign: "left"}}>
+
+
+                                <div className="card-header">
+                                    <h1 style={{textDecoration: "none", color: "#303C41"}}>{props.book.title}</h1>
+                                    <Text>
+                                        {props.book.description}
+                                    </Text>
+                                </div>
+
+                                <div className="card-header">
+                                    <div style={{textDecoration: "none", color: "#303C41"}}
+                                         className="card-title h5">{props.book.title}</div>
+                                </div>
+
+                                <div className="card-body">
+                                    <BadgeContainer>
+                                        {
+                                            props.book.type.map((type) =>
+                                                <BookType type={type.name} main={type.main}/>
+                                            )
+                                        }
+                                    </BadgeContainer>
+                                    <BookNotation notation={props.book.notation} readonly={true}/>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </>
+                    : <>
+                        <Link to={`/book/${props.book._id}`}>
+                            <Card className="card" miniature={miniature}>
+                                <Part className="card-image">
+                                    <BookImage img={props.book.image} miniature={miniature}></BookImage>
+                                </Part>
+
+                                <div style={{textAlign: "left"}}>
+
+                                    <div className="card-header">
+                                        <div style={{textDecoration: "none", color: "#303C41"}}
+                                             className="card-title h5">{props.book.title}</div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <BadgeContainer>
+                                            {
+                                                props.book.type.map((type) =>
+                                                    <BookType type={type.name} main={type.main}/>
+                                                )
+                                            }
+                                        </BadgeContainer>
+                                        <BookNotation notation={props.book.notation} readonly={true}/>
+                                    </div>
+                                </div>
+                            </Card>
+                        </Link>
+                    </>
             }
-          </BadgeContainer>
-          <BookNotation notation={props.book.notation} readonly={true}/>
-      </div>
-      { miniature ?
-        <Link to={`/book/${props.book._id}`}>Voir plus</Link>
-        : null
-      }
-    </Card>
-  );
+        </>
+    )
+        ;
 }
 
-const Card = styled.div`
-  max-width:  ${props => props.miniature ? '240px' : '700px'};
-  max-height: 345px;
-  background: #FFFFFF;
-  overflow: hidden;
-  margin: 5% ;
-  display:inline-block;
-`
+const Card = styled.div``
 
-const BookImage = styled.img`
+const Part = styled.div``
+
+const BookImage = styled.div`
   height: 200px;
-  width:200px;
+  width:100%;
+  margin: 24px 0;
   background-image: url(${props => props.img});
-  background-size: cover;
-  color: #000; text-shadow: 1px 1px 0 #fff;
-  margin: 5% ;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000; 
+  border: 0 ;
+`
+const BookImageLarge = styled.div`
+  height: 300px;
+  width:100%;
+  margin: 24px 0;
+  background-image: url(${props => props.img});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000; 
+  border: 0 ;
 `
 
-const Part = styled.div`
-  width:250px;
-  float: left;
-`
+const Text = styled.span``
 
-const Text = styled.span`
-  font-family: "Fira Sans";
-  font-style: normal;
-  font-weight: 300px;
-  font-size: 13px;
-  line-heigt: 130%;
-`
-
-const BadgeContainer = styled.div`
-    display:block;
-    margin:24px 0;
-`
+const BadgeContainer = styled.div``

@@ -37,16 +37,26 @@
 }
 
 .btn-primary{
-  font-family: "Fira Sans";
-  font-weight: 500;
-  background-color: #303C41!important;
-  border-color: #303C41!important;
-}
+   font-family: "Fira Sans";
+   font-weight: 500;
+   background-color: #303C41!important;
+   border-color: #303C41!important;
+ }
 .btn-primary:hover{
   background-color: rgb(15, 99, 122) !important;
   border-color: rgb(10, 59, 74) !important;
 }
-
+.btn-secondary{
+  font-family: "Fira Sans";
+  font-weight: 500;
+  color: rgb(30, 174, 220)!important;
+  border-color: rgb(30, 174, 220)!important;
+}
+.btn-secondary:hover{
+  background-color:  rgba(30, 184, 230, 0.2) !important;
+  border-color: rgb(30, 174, 220)!important;
+  color: rgb(10, 59, 74) !important;
+}
 .btn-link{
   color: rgb(30, 174, 220)!important;
 }
@@ -54,3 +64,8 @@
 h2, .h3, .h4, .h5{
    font-weight: 500!important;
  }
+
+body{
+  background-color: #F6F8F9!important;
+  padding-bottom: 32px;
+}

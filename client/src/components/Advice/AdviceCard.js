@@ -1,34 +1,31 @@
 import React from 'react';
 import BookNotation from '../Book/Attribute/BookNotation'
 import styled from 'styled-components';
+const userImg = require("../../img/user.png");
+
 
 export default function AdviceCard(props) {
   const notation = {
       numberOfReviews : null,
       note: props.advice.score
   }
-
   return (
-    <Container> 
-        <Title>{props.advice.title}</Title>
-        <BookNotation notation={notation} readonly/>
-        <Description>{props.advice.description}</Description>
+    <Container>
+        <div className="columns">
+            <div className="column col-6">
+            <img className="float-left" src={userImg}/>
+            <h4 style={{marginLeft: 16, display: "inline-block"}}>{props.advice.title}</h4>
+            </div>
+            <BookNotation className="column col-6 float-right" notation={notation} readonly/>
+        </div>
+        <p style={{marginLeft: 56, display: "inline-block"}}>{props.advice.description}</p>
     </Container>
   );
 }
 
 const Container = styled.div`
-  max-width:  580px;
-  max-height: 200px;
-  width:50%;
-  padding:16px;
+  padding:24px;
   background: #FFFFFF;
   overflow: hidden;
-  margin:20px;
 `
 
-const Title = styled.h2`
-`
-
-const Description = styled.div`
-`
