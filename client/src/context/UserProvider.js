@@ -19,8 +19,6 @@ export default class UserProvider extends React.Component {
                     .then(data => {
                                   sessionStorage.setItem('token',JSON.stringify(data.token))
                                   sessionStorage.setItem('logged',JSON.stringify(data.user._id))
-                                  this.setState({logged:true});
-                                  this.setState({userData: data});
                                   window.location = "/#close"
                                 })
                 ).catch(err => console.log(err));

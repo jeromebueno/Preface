@@ -6,7 +6,7 @@ export default class BookProvider extends React.Component {
       books : [],
       book: {},
       loadBooks: () => {
-        fetch('http://localhost:3003/book/', {
+        fetch('http://localhost:3003/trends/', {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

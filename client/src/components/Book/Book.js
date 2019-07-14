@@ -25,7 +25,6 @@ export default function Book({ match }) {
         <h3>Avis des utilisateurs</h3>
         <Test>
           {context.book.avis.map(advice => <AdviceCard advice={advice}/>) }
-         
         </Test>
       </> : null
       }
