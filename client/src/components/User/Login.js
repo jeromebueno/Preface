@@ -25,6 +25,7 @@ const Login = () => {
         "email": email,
         "password": password
     }
+    context.login(user)
   }
 
   return (

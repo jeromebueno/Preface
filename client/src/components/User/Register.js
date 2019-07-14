@@ -90,8 +90,7 @@ const Register = () => {
                     <div className="column col-6 mb-2 mt-2">
                 <div className="form-group">
                     <label className="form-checkbox" htmlFor="terms">
-                        <input className="checkbox" id="terms" name="terms" type="checkbox" ref={terms} required/> <i
-                        className="form-icon"></i>Accepter les conditions
+                        <input className="checkbox" id="terms" name="terms" type="checkbox" ref={terms} required/> <i className="form-icon"></i>Accepter les conditions
                     </label>
                 </div>
                     </div>

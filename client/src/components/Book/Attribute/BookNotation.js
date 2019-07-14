@@ -6,7 +6,6 @@ const starEmpty = require("../../../img/star-empty.png");
 const starFull = require("../../../img/star-full.png")
 const Div = styled.div`
     display:inline-block;
-    margin-left:16px;
 `
 
 export default function BookNotation(props) {
@@ -19,11 +18,11 @@ export default function BookNotation(props) {
 
     let isReadOnly = props.readonly ? true : false
 
-    let rating = props.notation ? props.notation.note : score
-
+    let rating = props.notation ? props.notation.note : score;
+    let reviews =  props.notation ? props.notation.numberOfReviews + ' avis' : "";
     return (
-        <div>
-            <Div>
+        <>
+            <Div style={{marginTop: 12, float: "left"}}>
                 <Rating 
                   name="Rating"
                   emptySymbol={<img src={starEmpty} className="icon" />}
@@ -32,14 +31,11 @@ export default function BookNotation(props) {
                   initialRating = {rating}
                   readonly = {isReadOnly}/>
             </Div>
-            <Div>{rating}/5</Div>
-            {!props.notation == null ?
-                !props.notation.numberOfReviews == null?
-                    <Div>{props.notation.numberOfReviews} avis</Div> 
-                    : null
-                : null
+            <Div style={{color: "#303C41", fontWeight: 500, marginTop: 12, marginLeft: 12}}>{rating}/5</Div>
+            { props.notation ?
+                <Div style={{color: "#303C41", fontWeight: 300, marginTop: 12, marginLeft: 8}}>{reviews}</Div> : <></>
             }
-            
-        </div>
+
+        </>
     );
 }

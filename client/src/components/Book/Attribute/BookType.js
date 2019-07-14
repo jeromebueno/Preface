@@ -14,11 +14,11 @@ const BadgeText = styled.div`
     font-style: normal;
     font-weight: 300;
     font-size: 12px;
-    line-height: 100%;
+    line-height: 22px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #303C41;
+    color: #fff
 `
 
 export default function BookCard(props) {

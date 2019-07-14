@@ -15,17 +15,26 @@ export default function Book({ match }) {
   }, []);
 
   return (
-    <Container> 
+    <Container style={{marginTop: 32}} className="column  col-12 col-mx-auto">
       { !(context.book.book == undefined) ?
       <>
-        <Test>
-          <BookCard book={context.book.book} key={context.book.book._id}/>
-          <GiveAdviceCard/>
-        </Test>
-        <h3>Avis des utilisateurs</h3>
-        <Test>
-          {context.book.avis.map(advice => <AdviceCard advice={advice}/>) }
-        </Test>
+        <div className="columns" style={{width: "100%"}}>
+          <div className="column col-sm-12 col-8 col-mx-auto">
+            <BookCard book={context.book.book} key={context.book.book._id}/>
+          </div>
+          <div className="column col-sm-12 col-4 col-mx-auto">
+            <GiveAdviceCard/>
+          </div>
+        </div>
+          <div style={{marginTop: 40}} className="divider"/>
+      <div style={{marginTop: 32}} className="columns" style={{width: "100%"}}>
+        <div className="columns" style={{width: "100%"}}>
+            <div style={{marginTop: 32}} className="column col-12 mb-2">
+            <h3>Avis des utilisateurs</h3>
+            </div>
+            {context.book.avis.map(advice =>  <div className="column col-6 col-sm-12 mb-2"><AdviceCard advice={advice}/></div>) }
+        </div>
+      </div>
       </> : null
       }
     </Container>
@@ -35,9 +44,5 @@ export default function Book({ match }) {
 const Container = styled.div`
   width:100%;
   overflow: hidden;
-`
-
-const Test = styled.div`
-  display:inline-flex;  
 `
 
