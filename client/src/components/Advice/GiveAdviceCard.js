@@ -16,8 +16,8 @@ export default function GiveAdviceCard() {
     const advice = {
       "title": title.current.value,
       "description": text.current.value,
-      "score": score,
-      "userId": JSON.parse(localStorage.getItem('logged')),
+      "score": score.current.value,
+      "userId": JSON.parse(sessionStorage.getItem('logged')),
       "bookId": window.location.pathname.split('/').slice(-1)[0]
     }
     context.sendAdvice(advice);

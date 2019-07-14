@@ -1,20 +1,23 @@
 import React from 'react';
 import SearchBar from './Utils/SearchBar'
-import BookProvider from '../context/BookProvider'
 import BookList from './Book/BookList'
 import styles from 'styled-components'
+import BookProvider from "../context/BookProvider";
 
 const Container = styles.div`
-    padding-left:10%;
+   margin-top: 72px
 `
 
 export default function Home() {
-  return ( <Container>
+  return (
+      <Container className="column col-sm-12 col-9 col-mx-auto">
         <div>
-        <h2>Donnez un avis pour vos lectures</h2>
+        <h2>Donnez un avis à vos lectures</h2>
         <SearchBar/>
       </div>
-      <div>
+
+      <div style={ {marginTop: 32}}>
+          <div className="divider mt-2 mb-2"></div>
         <h2>Trends</h2>
         <BookProvider>
             <BookList miniature={true}/>

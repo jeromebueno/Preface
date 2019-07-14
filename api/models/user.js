@@ -3,13 +3,16 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-    firstname: String,
-    lastname: String,
+    firstname: {
+        type: String
+    },
+    lastname: {
+        type: String
+    },
     email: {
         type: String,
         trim: true,
         lowercase: true,
-        unique: true,
         required: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
@@ -20,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     dob: Date,
     termsAccepted: Boolean,
     termsAcceptedDate: Date,
-}, { toJSON: { virtuals: true } });
+}, {toJSON: {virtuals: true}});
 
 
 UserSchema.virtual('avis', {
@@ -45,12 +48,12 @@ UserSchema.methods = {
     register: function () {
         return this.save();
     }
-}
+};
 
 UserSchema.statics = {
     login: function (email, password) {
         return new Promise((resolve, reject) => {
-            User.findOne({ 'email': email }).then(user => {
+            User.findOne({'email': email}).then(user => {
                 if (!user) return reject('User not found')
                 bcrypt.compare(password, `${user.password}`).then(res => res ? resolve(user) : reject('Wrong password'));
             })
