@@ -1,44 +1,30 @@
 import React from 'react'
-import {toast} from 'react-toastify';
 import UserContext from './UserContext'
 
 export default class UserProvider extends React.Component {
-    notifyRegister = (user) => toast.success("Inscription réussie " + user + ", redirection ...", {
-        position: toast.POSITION.TOP_CENTER
-    });
-    notifyLog = (user) => toast.success("Bienvenue " + user + " !", {
-        position: toast.POSITION.TOP_CENTER
-    });
-    notifyErr = (err) => toast.error(err, {
-        position: toast.POSITION.TOP_CENTER
-    });
     state = {
         login: (user) => {
-            fetch('http://localhost:3003/login/', {
+           return fetch('http://localhost:3003/login/', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(user)
             }).then(res => {
-                console.log(res)
                     if (res.status === 201) {
-                        res.json()
+                         res.json()
                             .then(data => {
-                                sessionStorage.setItem('token', JSON.stringify(data.token))
-                                sessionStorage.setItem('user', JSON.stringify(data.user))
-                                sessionStorage.setItem('logged', JSON.stringify(data.user._id))
-                                this.forceUpdate();
-                                window.location = "/#close";
-                                this.notifyLog(data.user.firstname);
-                            })
+                            sessionStorage.setItem('token', JSON.stringify(data.token));
+                            sessionStorage.setItem('user', JSON.stringify(data.user));
+                            sessionStorage.setItem('logged', JSON.stringify(data.user._id))
+                            return Promise.resolve(data);
+                        })
                     } else{
-                        this.notifyErr("Mauvais identifiant ou mot de passe")
+                        return Promise.resolve(false);
                     }
                 }
             ).catch(err => {
                 console.log(err);
-                this.notifyErr(err)
             });
         },
         register: (user) => {
@@ -49,26 +35,17 @@ export default class UserProvider extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(user)
-            }).then(res =>
-                res.json()
-                    .then(data => {
-                        this.notifyRegister(data.firstname);
-                        fetch('http://localhost:3003/login/', {
-                            method: 'post',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({"email": user.email, "password": user.password})
-                        }).then(res =>
-                            res.json()
-                                .then(data => {
-                                    sessionStorage.setItem('token', JSON.stringify(data.token))
-                                    sessionStorage.setItem('user', JSON.stringify(data.user))
-                                    sessionStorage.setItem('logged', JSON.stringify(data.user._id))
-                                    window.location = "/#close";
-                                })
-                        ).catch(err => console.log(err));
-                    })
+            }).then(res => {
+                    if (res.status === 201) {
+                        res.json()
+                            .then(data => {
+                                return Promise.resolve(data);
+                            })
+                    }
+                    else{
+                        return Promise.resolve(false);
+                    }
+                }
             ).catch(err => console.log(err));
         },
         findAvis: (user) => {

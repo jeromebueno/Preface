@@ -1,4 +1,4 @@
-import React,{useContext,useEffect,useState,useRef} from 'react';
+import React,{useContext,useEffect,useRef} from 'react';
 import BookContext from '../../context/BookContext'
 import BookCard from './BookCard';
 import styled from 'styled-components';
@@ -16,7 +16,7 @@ export default function Book({ match }) {
 
   return (
     <Container style={{marginTop: 32}} className="column  col-12 col-mx-auto">
-      { !(context.book.book == undefined) ?
+      { !(context.book.book === undefined) ?
       <>
         <div className="columns" style={{width: "100%"}}>
           <div className="column col-sm-12 col-8 col-mx-auto">

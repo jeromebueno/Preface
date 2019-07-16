@@ -1,10 +1,17 @@
 import React, {useContext, useState} from 'react';
 import styled from 'styled-components';
 import UserContext from '../../context/UserContext';
+import {toast} from 'react-toastify';
 
 const Register = () => {
+    const notifyRegister = (user) => toast.success("Inscription réussie " + user + ", redirection ...", {
+        position: toast.POSITION.TOP_CENTER
+    });
+    const notifyErr = (err) => toast.error(err, {
+        position: toast.POSITION.TOP_CENTER
+    });
     const context = useContext(UserContext)
-    const [errors, setErrors] = useState([])
+    const [errors, ] = useState([])
 
     let firstname = React.createRef();
     let lastname = React.createRef();
@@ -22,7 +29,8 @@ const Register = () => {
         if (!user.terms) {
             error.push("Veuillez accepter les conditions d'utiisations")
         }
-        setErrors(error)
+
+        return Promise.resolve();
     }
 
     const handleSubmit = (e) => {
@@ -35,16 +43,28 @@ const Register = () => {
             "confirmPassword": confirmPassword.current.value,
             "dob": dob.current.value,
             "terms": terms.current.checked,
-        }
-        checkCompleteRegister(user)
-        if (errors.length == 0) {
-            context.register(user)
-        }
+        };
+        checkCompleteRegister(user).then(function(){
+            context.register(user).then(function(res){
+                if(res === false){
+                    notifyErr();
+                }
+                else{
+                    notifyRegister();
+                    context.login(user).then(function(){
+                        window.location = "/profile"
+                    });
+
+                }
+
+            });
+        });
     }
 
     return (
-        <Container>
-            <Form className="form-horizontal" onSubmit={handleSubmit}>
+        <div>
+            <h2>Inscription</h2>
+            <form className="form-horizontal" onSubmit={handleSubmit}>
                 <div id="error">
                     {errors.map(err => <p>{err}</p>)}
                 </div>
@@ -95,17 +115,11 @@ const Register = () => {
                 </div>
                     </div>
                 </div>
-                <button className="btn btn-primary mt-2">Inscription</button>
-            </Form>
-        </Container>
+                <input type="submit" className="btn btn-primary mt-2" value="Je m'inscris"/>
+            </form>
+        </div>
     );
-}
+};
 export default Register;
-const Container = styled.div`
-  display: inline-block;
-`
 
-const Form = styled.form`
-  line-height: 14px; 
-`
 

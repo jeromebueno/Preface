@@ -19,10 +19,10 @@ export default function GiveAdviceCard() {
       "score": score,
       "userId": JSON.parse(sessionStorage.getItem('logged')),
       "bookId": window.location.pathname.split('/').slice(-1)[0]
-    }
+    };
     context.sendAdvice(advice);
     context.findBook(advice.bookId);
-  }
+  };
 
   return (
     <Container className="card" style={{width: "100%"}}>
