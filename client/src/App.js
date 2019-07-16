@@ -1,40 +1,42 @@
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Header from './components/Utils/Header';
 import Home from './components/Home'
 import Profile from './components/Profile'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Connexion from './components/Connexion'
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import styled from 'styled-components'
 import Book from './components/Book/Book';
 import BookProvider from './context/BookProvider';
 import UserProvider from './context/UserProvider';
 
 function App() {
-  return (
-    <Body>
-      <div className="App">
-        <div className="container">
-            <div className="columns" >
-                <ToastContainer />
-                <Header/>
-                  <Router>
-                  <div className="column col-12">
-                    <Route exact path="/" component={Home} />
-                      <UserProvider>
-                        <Route exact path="/profile" component={Profile} />
-                      </UserProvider>
-                    <BookProvider>
-                      <Route exact path="/book/:id" component={Book} />
-                    </BookProvider>
-                  </div>
-                </Router>
-              </div>
+    return (
+        <Body>
+        <div className="App">
+            <div className="container">
+                <div className="columns">
+                    <ToastContainer/>
+                    <Router>
+                        <Header/>
+                        <div className="column col-12">
+                            <Route exact path="/" component={Home}/>
+                            <UserProvider>
+                                <Route exact path="/register" component={Connexion}/>
+                                <Route exact path="/profile" component={Profile}/>
+                            </UserProvider>
+                            <BookProvider>
+                                <Route exact path="/book/:id" component={Book}/>
+                            </BookProvider>
+                        </div>
+                    </Router>
+                </div>
             </div>
         </div>
-    </Body>
-  );
+        </Body>
+    );
 }
 
 const Body = styled.div`
