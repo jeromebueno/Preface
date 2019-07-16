@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react';
-import styled from 'styled-components';
 import UserContext from '../../context/UserContext';
 import {toast} from 'react-toastify';
 
@@ -10,9 +9,8 @@ const Register = () => {
     const notifyErr = (err) => toast.error(err, {
         position: toast.POSITION.TOP_CENTER
     });
-    const context = useContext(UserContext)
-    const [errors, ] = useState([])
-
+    const context = useContext(UserContext);
+    let errors = false;
     let firstname = React.createRef();
     let lastname = React.createRef();
     let email = React.createRef();
@@ -21,17 +19,20 @@ const Register = () => {
     let dob = React.createRef();
     let terms = React.createRef();
 
-    const checkCompleteRegister = (user) => {
-        let error = [];
+    const checkCompleteRegister = (user, callback) => {
+        console.log(user);
+        errors = false;
         if (user.password !== user.confirmPassword) {
-            error.push("Les mots de passe ne correspondent pas")
+            errors = true;
+            notifyErr("Les mots de passe ne correspondent pas");
         }
         if (!user.terms) {
-            error.push("Veuillez accepter les conditions d'utiisations")
+            errors = true;
+            notifyErr("Veuillez accepter les conditions d'utiisations");
         }
-
-        return Promise.resolve();
-    }
+        console.log(errors);
+        callback();
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,30 +45,32 @@ const Register = () => {
             "dob": dob.current.value,
             "terms": terms.current.checked,
         };
-        checkCompleteRegister(user).then(function(){
-            context.register(user).then(function(res){
-                if(res === false){
-                    notifyErr();
-                }
-                else{
-                    notifyRegister();
-                    context.login(user).then(function(){
-                        window.location = "/profile"
-                    });
+        console.log(user);
+        checkCompleteRegister(user, function(){
 
-                }
+            if (!errors) {
+                context.register(user).then(function(res){
+                    if(res === false){
+                        notifyErr("Utilisateur déjà existant");
+                    }
+                    else{
+                        notifyRegister();
+                        context.login(user).then(function(){
+                            window.location = "/profile"
+                        });
 
-            });
+                    }
+
+                });
+            }
         });
+
     }
 
     return (
         <div>
             <h2>Inscription</h2>
             <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div id="error">
-                    {errors.map(err => <p>{err}</p>)}
-                </div>
                 <div className="columns">
                     <div className="column col-6">
                 <div className="form-group">

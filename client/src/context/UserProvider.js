@@ -28,14 +28,14 @@ export default class UserProvider extends React.Component {
             });
         },
         register: (user) => {
-            console.log(user);
-            fetch('http://localhost:3003/register/', {
+            return fetch('http://localhost:3003/register/', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(user)
             }).then(res => {
+                console.log(res);
                     if (res.status === 201) {
                         res.json()
                             .then(data => {
@@ -46,7 +46,7 @@ export default class UserProvider extends React.Component {
                         return Promise.resolve(false);
                     }
                 }
-            ).catch(err => console.log(err));
+            ).catch(err =>  { return Promise.resolve(err)});
         },
         findAvis: (user) => {
             fetch('http://localhost:3003/user/' + +'/avis', {
