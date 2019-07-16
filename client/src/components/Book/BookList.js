@@ -12,8 +12,8 @@ export default function BookList(props) {
   const context = useContext(BookContext)
   const ref = useRef()
   
-  useEffect(() => { // ComponentDidMount
-    context.loadBooks();
+  useEffect(() => {
+    context.loadTrends();
     ref.current = true;
   }, []);
 
@@ -22,7 +22,7 @@ export default function BookList(props) {
         <div className="container">
             <div className="columns">
       {
-        context.books.map((book) =>
+        context.trends.map((book) =>
             <div className="column col-3 mb-2">
               <BookCard book={book} key={book.id} miniature={props.miniature}/>
             </div>

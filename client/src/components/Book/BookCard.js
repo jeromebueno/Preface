@@ -11,40 +11,45 @@ export default function BookCard(props) {
             {
                 !miniature ?
                     <>
-                        <Card style={{padding: 32}}className="card" miniature={miniature}>
+                        <Card style={{padding: 32}} className="card" miniature={miniature}>
                             <div className="columns">
                                 <div className="column col-4 col-sm-12">
-                            <Part className="card-image">
-                                <BookImageLarge img={props.book.image}></BookImageLarge>
-                            </Part>
+                                    <Part className="card-image">
+                                        <BookImageLarge img={props.book.image}></BookImageLarge>
+                                    </Part>
                                 </div>
-                                <div className="column col-8 col-sm-12">
-                            <div style={{textAlign: "left"}}>
+                                <div className="column col-7 col-sm-12">
+                                    <div style={{textAlign: "left"}}>
+                                        <div className="card-header">
+                                            <h1 style={{
+                                                textDecoration: "none",
+                                                color: "#303C41"
+                                            }}>{props.book.title}</h1>
+                                            <Text>
+                                                {props.book.description}
+                                            </Text>
+                                        </div>
 
+                                        <div className="card-header">
+                                            <div style={{textDecoration: "none", color: "#303C41"}}
+                                                 className="card-title h5">{props.book.title}</div>
+                                        </div>
 
-                                <div className="card-header">
-                                    <h1 style={{textDecoration: "none", color: "#303C41"}}>{props.book.title}</h1>
-                                    <Text>
-                                        {props.book.description}
-                                    </Text>
+                                        <div className="card-body">
+                                            <BadgeContainer>
+                                                {
+                                                    props.book.type.map((type) =>
+                                                        <BookType type={type.name} main={type.main}/>
+                                                    )
+                                                }
+                                            </BadgeContainer>
+                                            <BookNotation notation={props.book.notation} readonly={true}/>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className="card-header">
-                                    <div style={{textDecoration: "none", color: "#303C41"}}
-                                         className="card-title h5">{props.book.title}</div>
-                                </div>
-
-                                <div className="card-body">
-                                    <BadgeContainer>
-                                        {
-                                            props.book.type.map((type) =>
-                                                <BookType type={type.name} main={type.main}/>
-                                            )
-                                        }
-                                    </BadgeContainer>
-                                    <BookNotation notation={props.book.notation} readonly={true}/>
-                                </div>
-                            </div>
+                                <div class="column col-1 col-sm-12">
+                                    <button className="btn btn-secondary btn-lg"> ❤
+                                    </button>
                                 </div>
                             </div>
                         </Card>

@@ -1,41 +1,29 @@
-import React from 'react';
-import ReactSearchBox from 'react-search-box';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from 'styled-components';
+import BookContext from "../../context/BookContext";
 
 const Container = styles.div`
     width:90%;
-`
+`;
 
 export default function SearchBar() {
-    let data = [
-        {
-          key: 'john',
-          value: 'John Doe',
-        },
-        {
-          key: 'jane',
-          value: 'Jane Doe',
-        },
-        {
-          key: 'mary',
-          value: 'Mary Phillips',
-        },
-        {
-          key: 'robert',
-          value: 'Robert',
-        },
-        {
-          key: 'karius',
-          value: 'Karius',
-        },
-    ]
+    const context = useContext(BookContext);
+    const [formateds, setFormateds] = useState([]);
 
-  return (
-    <Container>
-        <ReactSearchBox
-        placeholder="Trouver un livre, un roman, une BD, et plus ..."
-        data={data}
-        callback={record => console.log(record)}/>
-    </Container>
-  );
+    useEffect(() => {
+        context.loadBooks().then((data) => {
+            setFormateds(data.map(obj => {
+                return {key: obj._id, value: obj.title,}
+            }));
+        })
+    }, []);
+    console.log(formateds);
+
+
+    return (
+        <Container>
+
+        </Container>
+
+    );
 }

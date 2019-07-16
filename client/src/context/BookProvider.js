@@ -4,8 +4,26 @@ import BookContext from './BookContext'
 export default class BookProvider extends React.Component {
     state = {
       books : [],
+        trends: [],
       book: {},
-      loadBooks: () => {
+        loadBooks: () => {
+           return fetch('http://localhost:3003/book/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('token'))
+                },
+            }).then(res =>
+                res.json()
+                    .then(data => {
+                        this.setState({
+                            books: data
+                        });
+                        return Promise.resolve(data);
+                    })
+            ).catch(err => console.log(JSON.stringify(err)));
+        },
+      loadTrends: () => {
         fetch('http://localhost:3003/trends/', {
           method: 'GET',
           headers: {
@@ -16,7 +34,7 @@ export default class BookProvider extends React.Component {
               res.json()
               .then(data => 
                 this.setState({
-                  books: data
+                    trends: data
                 }))
           ).catch(err => console.log(JSON.stringify(err)));
       },
