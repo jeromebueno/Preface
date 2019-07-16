@@ -4,7 +4,9 @@ import BookNotation from '../Book/Attribute/BookNotation';
 import BookContext from '../../context/BookContext';
 
 export default function GiveAdviceCard() {
-  const context = useContext(BookContext)
+    const userData = JSON.parse(window.sessionStorage.getItem('user'));
+    console.log(userData);
+  const context = useContext(BookContext);
     const userImg = require("../../img/user_large.png");
   let [score,setScore] = useState();
   let title = React.createRef();
