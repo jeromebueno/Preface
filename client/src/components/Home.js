@@ -13,7 +13,9 @@ export default function Home() {
       <Container className="column col-sm-12 col-9 col-mx-auto">
         <div>
         <h1>Trouvez et donnez votre avis sur une lecture</h1>
-        <SearchBar/>
+            <BookProvider>
+                 <SearchBar/>
+            </BookProvider>
       </div>
 
       <div style={ {marginTop: 32}}>
