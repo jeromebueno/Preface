@@ -37,11 +37,7 @@ export default function BookCard(props) {
 
                                         <div className="card-body">
                                             <BadgeContainer>
-                                                {
-                                                    props.book.type.map((type) =>
-                                                        <BookType type={type.name} main={type.main}/>
-                                                    )
-                                                }
+                                                <BookType type={props.book.type[0].name} main={props.book.type[0].main}/>
                                             </BadgeContainer>
                                             <BookNotation notation={props.book.notation} readonly={true}/>
                                         </div>
@@ -70,11 +66,7 @@ export default function BookCard(props) {
 
                                     <div className="card-body">
                                         <BadgeContainer>
-                                            {
-                                                props.book.type.map((type) =>
-                                                    <BookType type={type.name} main={type.main}/>
-                                                )
-                                            }
+                                                <BookType type={props.book.type[0].name} main={props.book.type[0].main}/>
                                         </BadgeContainer>
                                         <BookNotation notation={props.book.notation} readonly={true}/>
                                     </div>

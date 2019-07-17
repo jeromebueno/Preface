@@ -9,6 +9,7 @@ const Div = styled.div`
 `
 
 export default function BookNotation(props) {
+    console.log(props.notation)
     let [score,setScore] = useState(0)
 
     const handleChange = value => {
@@ -19,7 +20,8 @@ export default function BookNotation(props) {
     let isReadOnly = props.readonly ? true : false
 
     let rating = props.notation ? props.notation.note : score;
-    let reviews =  props.notation ? props.notation.numberOfReviews + ' avis' : "";
+    let reviews =  props.notation ? props.notation.numberOfReviews == null ?  "" : props.notation.numberOfReviews + ' avis' : "";
+
     return (
         <>
             <Div style={{marginTop: 12, float: "left"}}>

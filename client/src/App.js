@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import Book from './components/Book/Book';
 import BookProvider from './context/BookProvider';
 import UserProvider from './context/UserProvider';
+import AdviceProvider from './context/AdviceProvider'
 
 function App() {
     return (
@@ -25,10 +26,12 @@ function App() {
                             <Route exact path="/" component={Home}/>
                             <UserProvider>
                                 <Route exact path="/register" component={Connexion}/>
-                                <Route exact path="/profile" component={Profile}/>
                             </UserProvider>
                             <BookProvider>
                                 <Route exact path="/book/:id" component={Book}/>
+                                <AdviceProvider>
+                                    <Route exact path="/profile" component={Profile}/>
+                                </AdviceProvider>
                             </BookProvider>
                         </div>
                     </Router>
