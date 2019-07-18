@@ -1,4 +1,4 @@
-import React,{useContext,useEffect, useRef} from 'react';
+import React,{useContext,useEffect, useState} from 'react';
 import styled from 'styled-components'
 import BookContext from '../../context/BookContext'
 import BookCard from '../Book/BookCard'
@@ -10,24 +10,33 @@ const Container = styled.div`
 
 export default function BookList(props) {
   const context = useContext(BookContext)
-  const ref = useRef()
   
   useEffect(() => {
-    context.loadTrends();
-    ref.current = true;
+      if(props.favoriteBooks){
+        context.loadFavorite(props.favoriteBooks);
+      }else{
+        context.loadTrends();
+      }
   }, []);
 
+
   return (
-    <Container>
+    <Container>    
         <div className="container">
             <div className="columns">
-      {
-        context.trends.map((book) =>
-            <div className="column col-3 mb-2">
-              <BookCard book={book} key={book.id} miniature={props.miniature}/>
-            </div>
-        )
-      }
+              {console.log(context.favorites,context.trends)}
+              {
+                props.favoriteBooks ?
+                context.favorites.map((book) =>
+                <div className="column col-3 mb-2">
+                  <BookCard book={book} key={book.id} miniature={props.miniature}/>
+                </div>) :
+                context.trends.map((book) =>
+                    <div className="column col-3 mb-2">
+                      <BookCard book={book} key={book.id} miniature={props.miniature}/>
+                    </div>
+                ) 
+              }
             </div>
         </div>
     </Container>

@@ -5,8 +5,6 @@ import styled from 'styled-components';
 const Connection = () => {
     const userImg = require("../../img/user.png");
     const userData = window.sessionStorage.getItem('user');
-    const [open, setOpen] = useState(false);
-    const [wantConnect, setWantConnect] = useState(true);
     const handleClick = (e) => {
         e.preventDefault();
         window.sessionStorage.removeItem('user');

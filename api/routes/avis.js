@@ -34,5 +34,18 @@ router.post('/', (req, res) => {
         })
 });
 
+router.post("/:id", (req, res) => {
+    Avis.findOneAndUpdate({ _id: req.params.id },req.body)
+    .then(data => res.json(data))
+        .catch(error => {
+            console.log(error);
+            if (error.name == "CastError") {
+                res.status(422).json({ message: "Invalid id" });
+            } else {
+                res.sendStatus(500);
+            }
+        });
+});
+
 
 module.exports = router;

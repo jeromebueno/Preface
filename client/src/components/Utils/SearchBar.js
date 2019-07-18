@@ -7,19 +7,6 @@ const Container = styles.div`
 `;
 
 export default function SearchBar() {
-    const context = useContext(BookContext);
-    const [formateds, setFormateds] = useState([]);
-
-    useEffect(() => {
-        context.loadBooks().then((data) => {
-            setFormateds(data.map(obj => {
-                return {key: obj._id, value: obj.title,}
-            }));
-        })
-    }, []);
-    console.log(formateds);
-
-
     return (
         <Container>
 

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Rating from 'react-rating';
 import styled from 'styled-components';
 
@@ -9,17 +9,20 @@ const Div = styled.div`
 `
 
 export default function BookNotation(props) {
-    let [score,setScore] = useState(0)
+    let [score,setScore] = useState(1)
 
     const handleChange = value => {
         setScore(value)
         props.setScore(value)
     }
 
+    useEffect(()=> setScore(props.score || 1), [props.score]);
+
     let isReadOnly = props.readonly ? true : false
 
     let rating = props.notation ? props.notation.note : score;
-    let reviews =  props.notation ? props.notation.numberOfReviews + ' avis' : "";
+    let reviews =  props.notation ? props.notation.numberOfReviews == null ?  "" : props.notation.numberOfReviews + ' avis' : "";
+    
     return (
         <>
             <Div style={{marginTop: 12, float: "left"}}>

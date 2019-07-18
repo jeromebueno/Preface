@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import styled from 'styled-components'
 import BookType from './Attribute/BookType'
 import BookNotation from './Attribute/BookNotation'
+import AddToFavorite from './Attribute/AddToFavorite';
 
 export default function BookCard(props) {
     const miniature = props.miniature ? true : false;
@@ -37,19 +38,14 @@ export default function BookCard(props) {
 
                                         <div className="card-body">
                                             <BadgeContainer>
-                                                {
-                                                    props.book.type.map((type) =>
-                                                        <BookType type={type.name} main={type.main}/>
-                                                    )
-                                                }
+                                                <BookType type={props.book.type[0].name} main={props.book.type[0].main}/>
                                             </BadgeContainer>
                                             <BookNotation notation={props.book.notation} readonly={true}/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="column col-1 col-sm-12">
-                                    <button className="btn btn-secondary btn-lg"> ❤
-                                    </button>
+                                    <AddToFavorite book={props.book}/>
                                 </div>
                             </div>
                         </Card>
@@ -70,11 +66,7 @@ export default function BookCard(props) {
 
                                     <div className="card-body">
                                         <BadgeContainer>
-                                            {
-                                                props.book.type.map((type) =>
-                                                    <BookType type={type.name} main={type.main}/>
-                                                )
-                                            }
+                                                <BookType type={props.book.type[0].name} main={props.book.type[0].main}/>
                                         </BadgeContainer>
                                         <BookNotation notation={props.book.notation} readonly={true}/>
                                     </div>

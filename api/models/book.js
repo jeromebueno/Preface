@@ -1,5 +1,7 @@
 const db = require('../lib/db');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
+const User = require('../models/user')
 
 const BookSchema = new mongoose.Schema({
     title: String,
@@ -20,7 +22,8 @@ const BookSchema = new mongoose.Schema({
     type: {
         type: Array,
     },
-    image: String
+    image: String,
+    like: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }, { toJSON: { virtuals: true } });
 
 BookSchema.virtual('avis', {

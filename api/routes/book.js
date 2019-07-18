@@ -1,5 +1,6 @@
 const express = require('express');
 const Book = require('../models/book');
+const User = require('../models/user')
 const router =  express.Router();
 
 
@@ -40,6 +41,33 @@ router.post('/', (req, res) => {
                 res.sendStatus(500);
             }
         })
+});
+
+router.post('/finds', (req, res) => {
+    Book.find({
+        '_id': { $in: 
+            req.body
+        }}).then(data => res.status(201).send(data));
+});
+
+router.post('/:bookId/add', (req, res) => {
+    User.findById(req.body.userId).exec((err, user) => {
+        user.like.push(req.params.bookId)
+        user.save(function(err,data){
+            if(err) return console.log(err.stack);
+            res.status(201).json(user)
+          });
+    })
+});
+
+router.post('/:bookId/remove', (req, res) => {
+    User.findById(req.body.userId).exec((err, user) => {
+        user.like.pull(req.params.bookId)
+        user.save(function(err,data){
+            if(err) return console.log(err.stack);
+            res.status(201).json(user)
+          });
+    })
 });
 
 

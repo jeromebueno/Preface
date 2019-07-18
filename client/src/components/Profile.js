@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
+import React, {useContext,useEffect} from 'react';
 import styles from 'styled-components'
-import UserProvider from "../context/UserProvider";
-import UserContext from '../context/UserContext';
-
+import AdviceContext from '../context/AdviceContext';
+import AdviceList from '../components/Advice/AdviceList';
+import BookProvider from '../context/BookProvider';
+import BookList from '../components/Book/BookList'
 
 const userImg = require("../img/user_large.png");
 const Container = styles.div`
@@ -10,13 +11,15 @@ const Container = styles.div`
 `
 
 export default function Profile() {
-    const context = useContext(UserContext);
-    console.log(context);
+    const context = useContext(AdviceContext);
     const userData = JSON.parse(window.sessionStorage.getItem('user'));
+  
+    useEffect(() => { // ComponentDidMount
+      context.loadUserAdvice();
+    }, []);
 
     return (
         <Container className="column col-sm-12 col-9 col-mx-auto">
-
             <div className="columns">
                 <div className="column col-md-12 col-8 mb-2">
                     <div className="card" style={{padding: 24}}>
@@ -36,7 +39,7 @@ export default function Profile() {
                         <div className="card-body">
                             <div>
                                 <p>Avis</p>
-                                <h1>3</h1>
+                                <h1>{context.userAdvice == undefined ? 0 : context.userAdvice.length}</h1>
                             </div>
                         </div>
                     </div>
@@ -45,8 +48,8 @@ export default function Profile() {
                     <div className="card" style={{padding: '16px 24px'}}>
                         <div className="card-body">
                             <div>
-                                <p>Liste</p>
-                                <h1>3</h1>
+                                <p>Favoris</p>
+                                <h1>{userData.like.length}</h1>
                             </div>
                         </div>
                     </div>
@@ -56,9 +59,16 @@ export default function Profile() {
             <div style={{marginTop: 32}}>
                 <div style={{marginTop: 40}} className="divider"/>
                 <h2 style={{marginTop: 40}}>Mes avis</h2>
-                <UserProvider>
+                <AdviceList advices={context.userAdvice}/>
+            </div>
 
-                </UserProvider>
+
+            <div style={{marginTop: 32}}>
+                <div style={{marginTop: 40}} className="divider"/>
+                <h2 style={{marginTop: 40}}>Mes favoris</h2>
+                <BookProvider>
+                    <BookList miniature={true} favoriteBooks={userData.like}/>
+                </BookProvider>
             </div>
         </Container>
     );
