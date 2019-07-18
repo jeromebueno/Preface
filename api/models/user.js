@@ -1,6 +1,8 @@
 const db = require('../lib/db');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Book = require('../models/book');
+const Schema = mongoose.Schema
 
 const UserSchema = new mongoose.Schema({
     firstname: {
@@ -23,6 +25,7 @@ const UserSchema = new mongoose.Schema({
     dob: Date,
     termsAccepted: Boolean,
     termsAcceptedDate: Date,
+    like: [{type: Schema.Types.ObjectId, ref: 'Book'}]
 }, {toJSON: {virtuals: true}});
 
 
@@ -32,7 +35,6 @@ UserSchema.virtual('avis', {
     foreignField: 'userId',
     justOne: false // set true for one-to-one relationship
 });
-
 
 UserSchema.pre('save', function (next) {
     bcrypt.genSalt(10).then(salt => {

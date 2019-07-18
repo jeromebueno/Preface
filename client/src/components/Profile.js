@@ -1,7 +1,9 @@
-import React, {useContext,useRef,useEffect} from 'react';
+import React, {useContext,useEffect} from 'react';
 import styles from 'styled-components'
 import AdviceContext from '../context/AdviceContext';
 import AdviceList from '../components/Advice/AdviceList';
+import BookProvider from '../context/BookProvider';
+import BookList from '../components/Book/BookList'
 
 const userImg = require("../img/user_large.png");
 const Container = styles.div`
@@ -11,11 +13,9 @@ const Container = styles.div`
 export default function Profile() {
     const context = useContext(AdviceContext);
     const userData = JSON.parse(window.sessionStorage.getItem('user'));
-    const ref = useRef()
   
     useEffect(() => { // ComponentDidMount
       context.loadUserAdvice();
-      ref.current = true;
     }, []);
 
     return (
@@ -48,8 +48,8 @@ export default function Profile() {
                     <div className="card" style={{padding: '16px 24px'}}>
                         <div className="card-body">
                             <div>
-                                <p>Liste</p>
-                                <h1>4</h1>
+                                <p>Favoris</p>
+                                <h1>{userData.like.length}</h1>
                             </div>
                         </div>
                     </div>
@@ -60,6 +60,15 @@ export default function Profile() {
                 <div style={{marginTop: 40}} className="divider"/>
                 <h2 style={{marginTop: 40}}>Mes avis</h2>
                 <AdviceList advices={context.userAdvice}/>
+            </div>
+
+
+            <div style={{marginTop: 32}}>
+                <div style={{marginTop: 40}} className="divider"/>
+                <h2 style={{marginTop: 40}}>Mes favoris</h2>
+                <BookProvider>
+                    <BookList miniature={true} favoriteBooks={userData.like}/>
+                </BookProvider>
             </div>
         </Container>
     );

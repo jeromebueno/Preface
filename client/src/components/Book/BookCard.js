@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import styled from 'styled-components'
 import BookType from './Attribute/BookType'
 import BookNotation from './Attribute/BookNotation'
+import AddToFavorite from './Attribute/AddToFavorite';
 
 export default function BookCard(props) {
     const miniature = props.miniature ? true : false;
@@ -44,8 +45,7 @@ export default function BookCard(props) {
                                     </div>
                                 </div>
                                 <div class="column col-1 col-sm-12">
-                                    <button className="btn btn-secondary btn-lg"> ❤
-                                    </button>
+                                    <AddToFavorite book={props.book}/>
                                 </div>
                             </div>
                         </Card>
