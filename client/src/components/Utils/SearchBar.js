@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from 'styled-components';
-
+import {Link} from 'react-router-dom';
 const Container = styles`
     
 fieldset {
@@ -81,7 +81,7 @@ export default function SearchBar() {
         <Container>
             <form>
                 <fieldset><input type="search"/>
-                    <button type="submit"><i className="fa fa-search"></i></button>
+                    <Link type="submit"><i className="fa fa-search"></i></Link>
                 </fieldset>
             </form>
         </Container>
