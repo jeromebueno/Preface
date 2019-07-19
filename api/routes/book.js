@@ -8,6 +8,12 @@ router.get('/', (req, res) => {
     Book.find(req.query).then(data => res.json(data));
 });
 
+router.get('/search/:query', (req, res) => {
+    Book.find({
+        $text: { $search: req.params.query },
+    }).then(data => res.json(data));
+});
+
 // book/1
 router.get("/:id", (req, res) => {
     Book.findOne({ _id: req.params.id })

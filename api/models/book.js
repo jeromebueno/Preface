@@ -33,7 +33,15 @@ BookSchema.virtual('avis', {
     justOne: false // set true for one-to-one relationship
 });
 
-
+BookSchema.index({
+    title: 'text',
+    author: 'text',
+}, {
+    weights: {
+        title: 5,
+        author: 1,
+    },
+});
 BookSchema.methods.onScreen = function() {
     return Date.now() > new Date(`${this.year}-01-01`);
 };
