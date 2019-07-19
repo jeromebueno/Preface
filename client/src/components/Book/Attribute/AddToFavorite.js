@@ -11,7 +11,7 @@ export default function AddToFavorite({ book }) {
     if (user.like) {
       if (user.like.includes(book._id)) setLiked(true);
     } else setLiked(false); 
-  }, []);
+  }, [book._id]);
 
   const handleFavorite = () => {
     context.handleFavorite(book._id,liked);

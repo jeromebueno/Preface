@@ -23,6 +23,8 @@ const Login = () => {
             case 'password':
                 setPassword(newValue)
                 break;
+            default:
+                break;
         }
     };
 

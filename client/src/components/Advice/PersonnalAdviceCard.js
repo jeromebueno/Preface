@@ -14,7 +14,7 @@ export default function PersonnalAdviceCard(props) {
   useEffect(() => { // ComponentDidMount
     context.findBook(advice.bookId);
     ref.current = true;
-  }, []);
+  }, [advice.bookId]);
 
   const notation = {
     note: advice.score,
@@ -25,12 +25,12 @@ export default function PersonnalAdviceCard(props) {
     <Container>
         {!(advice == null)?
         <>
-                {!(context.book.book == undefined)?
+                {!(context.book.book === undefined)?
                 <BookImage img={context.book.book.image}></BookImage>: null
                 }
                 <div className="columns">
                 <div className="column col-6">
-                <img className="float-left" src={userImg}/>
+                <img className="float-left" alt="" src={userImg}/>
                 <h4 style={{marginLeft: 16, display: "inline-block"}}>{advice.title}</h4>
                 </div>
                 <BookNotation className="column col-6 float-right" notation={notation} note={advice.note} readonly/>

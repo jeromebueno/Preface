@@ -2,7 +2,6 @@ import React, {useContext,useEffect} from 'react';
 import styles from 'styled-components'
 import AdviceContext from '../context/AdviceContext';
 import AdviceList from '../components/Advice/AdviceList';
-import BookProvider from '../context/BookProvider';
 import BookList from '../components/Book/BookList'
 import BookContext from '../context/BookContext';
 
@@ -13,13 +12,13 @@ const Container = styles.div`
 
 export default function Profile() {
     const context = useContext(AdviceContext);
-    const bookContext = useContext(BookContext)
+    const bookContext = useContext(BookContext);
     const userData = JSON.parse(window.sessionStorage.getItem('user'));
   
     useEffect(() => { // ComponentDidMount
       context.loadUserAdvice();
       bookContext.loadFavorite(userData.like);
-    }, []);
+    }, [userData.like]);
 
     return (
         <Container className="column col-sm-12 col-9 col-mx-auto">
@@ -27,7 +26,7 @@ export default function Profile() {
                 <div className="column col-md-12 col-8 mb-2">
                     <div className="card" style={{padding: 24}}>
                         <div className="card-body">
-                            <img className="float-left" style={{marginRight: 32}} width="84px" src={userImg}/>
+                            <img className="float-left" alt="" style={{marginRight: 32}} width="84px" src={userImg}/>
                             <div>
                                 <h2>
                                     {userData.firstname} {userData.lastname}
@@ -42,7 +41,7 @@ export default function Profile() {
                         <div className="card-body">
                             <div>
                                 <p>Avis</p>
-                                <h1>{context.userAdvice == undefined ? 0 : context.userAdvice.length}</h1>
+                                <h1>{context.userAdvice === undefined ? 0 : context.userAdvice.length}</h1>
                             </div>
                         </div>
                     </div>

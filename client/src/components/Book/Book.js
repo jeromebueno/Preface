@@ -1,4 +1,4 @@
-import React,{useContext,useEffect,useRef} from 'react';
+import React,{useContext,useEffect} from 'react';
 import BookContext from '../../context/BookContext'
 import BookCard from './BookCard';
 import styled from 'styled-components';
@@ -10,7 +10,8 @@ export default function Book({ match }) {
   
   useEffect(() => { // ComponentDidMount
     context.findBook(match.params.id)
-  }, []);
+  }, [match.params.id]);
+
 
   if(context.book.book === undefined) return <div></div>
 
@@ -25,7 +26,7 @@ export default function Book({ match }) {
           </div>
         </div>
           <div style={{marginTop: 40}} className="divider"/>
-      <div style={{marginTop: 32}} className="columns" style={{width: "100%"}}>
+      <div style={{marginTop: 32,width: "100%"}} className="columns">
         <div className="columns" style={{width: "100%"}}>
             <div style={{marginTop: 32}} className="column col-12 mb-2">
             <h3>Avis des utilisateurs</h3>

@@ -13,7 +13,7 @@ export default function AdviceCard(props) {
     <Container>
         <div className="columns">
             <div className="column col-6">
-            <img className="float-left" src={userImg}/>
+            <img className="float-left" alt="" src={userImg}/>
             <h4 style={{marginLeft: 16, display: "inline-block"}}>{props.advice.title}</h4>
             </div>
             <BookNotation className="column col-6 float-right" notation={notation} readonly/>
