@@ -13,8 +13,9 @@ export default function SearchBar() {
     }
 
     const getSearchLink = () => {
-        return `/book/search/${encodeURI(target)}`
+        return target.length < 2 ?  "#" : `/book/search/${encodeURI(target)}`
     }
+    
     return (
         <Container>
             <input type="text" onChange={handleTarget}></input>
