@@ -23,15 +23,15 @@ function App() {
             <Router>
               <Header />
               <div className="column col-12">
-                <Route exact path="/" component={Home} />
                 <UserProvider>
                   <Route exact path="/register" component={Connexion} />
                 </UserProvider>
                 <BookProvider>
-                  <Route exact path="/book/:id" component={Book} />
+                  <Route exact path="/" component={Home} />
                   <AdviceProvider>
-                    <Route exact path="/profile" component={Profile} />
+                      <Route exact path="/profile" component={Profile} />
                   </AdviceProvider>
+                  <Route exact path="/book/:id" component={Book} />
                 </BookProvider>
               </div>
             </Router>

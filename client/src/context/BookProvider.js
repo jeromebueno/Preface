@@ -49,7 +49,6 @@ export default class BookProvider extends React.Component {
           body: JSON.stringify(favorite)
           }).then((res) => res.json().then((data) => {
             this.setState({favorites: data})
-            console.log(this.state.favorites)
           })
           ).catch(err => console.log(JSON.stringify(err)));
       },

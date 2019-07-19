@@ -4,6 +4,7 @@ import AdviceContext from '../context/AdviceContext';
 import AdviceList from '../components/Advice/AdviceList';
 import BookProvider from '../context/BookProvider';
 import BookList from '../components/Book/BookList'
+import BookContext from '../context/BookContext';
 
 const userImg = require("../img/user_large.png");
 const Container = styles.div`
@@ -12,10 +13,12 @@ const Container = styles.div`
 
 export default function Profile() {
     const context = useContext(AdviceContext);
+    const bookContext = useContext(BookContext)
     const userData = JSON.parse(window.sessionStorage.getItem('user'));
   
     useEffect(() => { // ComponentDidMount
       context.loadUserAdvice();
+      bookContext.loadFavorite(userData.like);
     }, []);
 
     return (
@@ -66,9 +69,7 @@ export default function Profile() {
             <div style={{marginTop: 32}}>
                 <div style={{marginTop: 40}} className="divider"/>
                 <h2 style={{marginTop: 40}}>Mes favoris</h2>
-                <BookProvider>
-                    <BookList miniature={true} favoriteBooks={userData.like}/>
-                </BookProvider>
+                <BookList miniature={true} books={bookContext.favorites}/>
             </div>
         </Container>
     );
