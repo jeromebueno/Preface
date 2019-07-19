@@ -8,7 +8,6 @@ const Container = styled.div`
 `
 
 export default function BookList(props) {
-  console.log(props)
   return (
     <Container>    
         <div className="container">
