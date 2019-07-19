@@ -14,6 +14,7 @@ const BookContext = createContext({
    sendAdvice: (advice) => {},
    updateAdvice: (id,advice) => {},
    handleFavorite: (bookId,isLiked) => {},
+   searchBook: (target) => {},
 })
 
 export default BookContext
