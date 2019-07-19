@@ -12,6 +12,7 @@ import Book from "./components/Book/Book";
 import BookProvider from "./context/BookProvider";
 import UserProvider from "./context/UserProvider";
 import AdviceProvider from "./context/AdviceProvider";
+import Search from "./components/Search";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                 </UserProvider>
                 <BookProvider>
                   <Route exact path="/" component={Home} />
+                  <Route exact path="/book/search/:target" component={Search} />
                   <AdviceProvider>
                       <Route exact path="/profile" component={Profile} />
                   </AdviceProvider>
