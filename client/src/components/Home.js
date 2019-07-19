@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import SearchBar from './Utils/SearchBar'
 import BookList from './Book/BookList'
 import styles from 'styled-components'
 import BookProvider from "../context/BookProvider";
+import BookContext from '../context/BookContext';
 
 const Container = styles.div`
    margin-top: 72px
 `
 
 export default function Home() {
+  const context = useContext(BookContext);
+
+  useEffect(() => {
+    context.loadTrends()
+  },[]);
+
   return (
       <Container className="column col-sm-12 col-9 col-mx-auto">
         <div>
@@ -21,9 +28,7 @@ export default function Home() {
       <div style={ {marginTop: 32}}>
           <div style={{marginTop: 40}} className="divider"/>
         <h2 style={{marginTop: 40}}>Tendances</h2>
-        <BookProvider>
-            <BookList miniature={true}/>
-        </BookProvider>
+        <BookList miniature={true} books={context.trends}/>
       </div>
     </Container>
   );
