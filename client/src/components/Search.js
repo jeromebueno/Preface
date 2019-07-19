@@ -17,7 +17,7 @@ export default function Search({ match }) {
 
   return (
     <Container className="column col-sm-12 col-9 col-mx-auto">
-        <h1>Resultat de ma recherche</h1>
+        <h1>{context.books.length} résultat(s) pour "{match.params.target}"</h1>
         {context.books.length === 0?
           <p>Aucun livre trouvé</p>:
           <BookList miniature={true} books={context.books}/>
