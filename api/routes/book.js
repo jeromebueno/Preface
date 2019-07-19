@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.get('/search/:query', (req, res) => {
     Book.find({
         $text: { $search: req.params.query },
-    }).then(data => res.json(data));
+    }, {score: {$meta: 'textScore'}}).sort({score: {$meta: 'textScore'}}).then(data => res.json(data));
 });
 
 // book/1
