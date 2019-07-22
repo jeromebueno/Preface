@@ -14,8 +14,8 @@ export default function GiveAdviceCard(props) {
   useEffect(() => { // ComponentDidMount
     init(); // Fix
     const userId = JSON.parse(sessionStorage.getItem('logged'));
-    const advice = props.advices.filter(advice => advice.userId == userId)[0]
-    if(!(advice == undefined)){
+    const advice = props.advices.filter(advice => advice.userId === userId)[0]
+    if(!(advice === undefined)){
       setId(advice._id)
       setTitle(advice.title);
       setText(advice.description);
@@ -39,6 +39,8 @@ export default function GiveAdviceCard(props) {
         case 'text':
             setText(newValue)
             break;
+       default:
+         break;
     }
   };
 
@@ -66,7 +68,7 @@ export default function GiveAdviceCard(props) {
     <Container className="card" style={{width: "100%"}}>
       <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-group">
-            <img src={userImg} width="84px" className="p-centered mb-2"/>
+            <img src={userImg}  alt="" width="84px" className="p-centered mb-2"/>
         <BookNotation style={{width: "fit-content", margin: "24px auto"}} setScore={setScore} score={score}/>
         <input className="form-input mb-2" type="text" id="title" name="title" onChange={handleChange} value={title} placeholder="Titre d'avis" required/>
         <textarea placeholder="Decrivez votre experience de lecture" className="form-input mb-2"  value={text}  type="text"  id="text" name="text" onChange={handleChange} required/>
@@ -83,8 +85,3 @@ const Container = styled.div`
   overflow: hidden;
 `
 
-const Title = styled.h2`
-`
-
-const Description = styled.div`
-`

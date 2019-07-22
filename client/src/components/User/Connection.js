@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {} from 'react';
 import {Link} from "react-router-dom";
-import styled from 'styled-components';
 
 const Connection = () => {
     const userImg = require("../../img/user.png");
@@ -19,7 +18,7 @@ const Connection = () => {
          userDataParsed = JSON.parse(userData);
          button = <>
             <div className="popover popover-bottom float-right">
-                    <img src={userImg} className="icon"/>
+                    <img src={userImg} alt="" className="icon"/>
                     <a href="/profile"
                        className="btn btn-link float-right">{userDataParsed.firstname} {userDataParsed.lastname}</a>
 
@@ -51,15 +50,6 @@ const Connection = () => {
 
 export default Connection;
 
-const StyledButton = styled.button`
-    background: #303C41;
-    color:white;
-    height: 32px;
-    font-familly: 'Fira Sans', sans-serif;
-    font-weight: 500
-`
 
-const Container = styled.div`
-  text-align:center; 
-`
+
 

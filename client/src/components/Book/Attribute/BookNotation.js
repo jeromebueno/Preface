@@ -30,8 +30,8 @@ export default function BookNotation(props) {
             <Div style={{marginTop: 12, float: "left"}}>
                 <Rating 
                   name="Rating"
-                  emptySymbol={<img src={starEmpty} className="icon" />}
-                  fullSymbol={<img src={starFull} className="icon" />}
+                  emptySymbol={<img src={starEmpty} alt="" className="icon" />}
+                  fullSymbol={<img src={starFull}  alt="" className="icon" />}
                   onChange={handleChange}
                   initialRating = {rating}
                   readonly = {isReadOnly}/>
