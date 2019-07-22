@@ -102,6 +102,21 @@ export default class BookProvider extends React.Component {
           }).then((res) => res.json().then(user => sessionStorage.setItem('user',JSON.stringify(user)))
           ).catch(err => console.log(JSON.stringify(err)));
       },
+      searchBook: (target) => {
+        fetch('http://localhost:3003/book/search/'+target, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('token'))
+          },
+          }).then(res =>
+              res.json()
+              .then(data => {
+                this.setState({
+                  books: data
+                })})
+          ).catch(err => console.log(JSON.stringify(err)));
+      },
     };
   
     render() {

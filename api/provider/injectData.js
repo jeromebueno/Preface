@@ -41,8 +41,8 @@ function inject (data){
                         {'name': stats2,'main': false},
                     ],
                     'notation': {
-                        'note': 4,
-                        'numberOfReviews' : 120
+                        'note': null,
+                        'numberOfReviews' : null
                     }
                 });
                 book.save();

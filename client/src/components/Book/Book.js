@@ -15,6 +15,8 @@ export default function Book({ match }) {
 
   if(context.book.book === undefined) return <div></div>
 
+  console.log(context.book)
+
   return (
     <Container style={{marginTop: 32}} className="column  col-12 col-mx-auto">
         <div className="columns" style={{width: "100%"}}>

@@ -23,6 +23,8 @@ export default function BookNotation(props) {
     let rating = props.notation ? props.notation.note : score;
     let reviews =  props.notation ? props.notation.numberOfReviews == null ?  "" : props.notation.numberOfReviews + ' avis' : "";
     
+    if (props.notation && props.notation.note == null && props.notation.note == null) return <div>Aucun avis</div>
+
     return (
         <>
             <Div style={{marginTop: 12, float: "left"}}>

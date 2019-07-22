@@ -1,21 +1,26 @@
-import React, {} from 'react';
-import styles from 'styled-components';
+import React,{useState} from 'react';
 
+import styles from 'styled-components';
+import {Link} from 'react-router-dom';
+  
 const Container = styles.div`
-    width:90%;
 `;
 
 export default function SearchBar() {
+    const [target,setTarget] = useState("")
+    
+    const handleTarget = (e) => {
+        setTarget(e.target.value)
+    }
+
+    const getSearchLink = () => {
+        return target.length < 2 ?  "#" : `/book/search/${encodeURI(target)}`
+    }
+    
     return (
         <Container>
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="What are you looking for?"/>
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
+            <input type="text" onChange={handleTarget}></input>
+            <Link type="submit" to={getSearchLink()}>Rechercher</Link>
         </Container>
     );
 }

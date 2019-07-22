@@ -1,4 +1,4 @@
-import React,{useRef,useEffect, useContext} from 'react';
+import React,{useEffect, useContext} from 'react';
 import BookNotation from '../Book/Attribute/BookNotation'
 import styled from 'styled-components';
 import BookContext from '../../context/BookContext'
@@ -7,14 +7,13 @@ const userImg = require("../../img/user.png");
 
 export default function PersonnalAdviceCard(props) {
   let advice = props.advice === undefined ? null : props.advice;
-  let ref = useRef();
   let context = useContext(BookContext)
   
 
   useEffect(() => { // ComponentDidMount
     context.findBook(advice.bookId);
-    ref.current = true;
-  }, [advice.bookId]);
+  }, []);
+
 
   const notation = {
     note: advice.score,
