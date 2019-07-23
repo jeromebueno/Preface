@@ -8,9 +8,11 @@ export default function AddToFavorite({ book }) {
   
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("user"));
+    if(user !== null){
     if (user.like) {
       if (user.like.includes(book._id)) setLiked(true);
-    } else setLiked(false); 
+    } else setLiked(false);
+    }
   }, [book._id]);
 
   const handleFavorite = () => {

@@ -24,17 +24,20 @@ export default function PersonnalAdviceCard(props) {
     <Container>
         {!(advice == null)?
         <>
-                {!(context.book.book === undefined)?
-                <BookImage img={context.book.book.image}></BookImage>: null
-                }
                 <div className="columns">
+                    <div className="colum col-3">
+                        {!(context.book.book === undefined)?
+                            <BookImage img={context.book.book.image}></BookImage>: null
+                        }
+                    </div>
                 <div className="column col-6">
                 <img className="float-left" alt="" src={userImg}/>
                 <h4 style={{marginLeft: 16, display: "inline-block"}}>{advice.title}</h4>
+                  <br/>
+                    <p style={{marginLeft: 56, display: "inline-block"}}>{advice.description}</p>
                 </div>
-                <BookNotation className="column col-6 float-right" notation={notation} note={advice.note} readonly/>
+                <BookNotation className="column col-3 float-right" notation={notation} note={advice.note} readonly/>
             </div>
-            <p style={{marginLeft: 56, display: "inline-block"}}>{advice.description}</p>
         </> : null
       }
     </Container>

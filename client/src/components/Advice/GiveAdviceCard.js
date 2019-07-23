@@ -63,7 +63,8 @@ export default function GiveAdviceCard(props) {
 
     context.findBook(newAdvice.bookId);
   };
-
+    const userId = JSON.parse(sessionStorage.getItem('logged'));
+  if(userId !== null){
   return (
     <Container className="card" style={{width: "100%"}}>
       <form className="card-body" onSubmit={handleSubmit}>
@@ -76,7 +77,17 @@ export default function GiveAdviceCard(props) {
           </div>
       </form>
     </Container>
-  );
+  );}
+  else {
+      return (
+    <Container className="card" style={{width: "100%"}}>
+      <div className="form-group">
+        <img src={userImg}  alt="" width="84px" className="p-centered mb-2"/>
+        <p>Connectez-vous pour laisser un commentaire</p>
+      </div>
+    </Container>
+      );
+  }
 }
 
 const Container = styled.div`

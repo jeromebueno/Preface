@@ -19,8 +19,8 @@ export default function SearchBar() {
     
     return (
         <Container>
-            <input type="text" onChange={handleTarget}></input>
-            <Link type="submit" to={getSearchLink()}>Rechercher</Link>
+            <input type="text" style={{height: 40, width: "50%", borderRadius: 4, border: "1px solid #efefef"}} onChange={handleTarget}></input>
+            <Link type="submit" className="btn btn-primary" to={getSearchLink()}>Rechercher</Link>
         </Container>
     );
 }
