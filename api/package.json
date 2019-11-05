@@ -15,7 +15,7 @@
     "images-scraper": "^2.0.11",
     "is-online": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.3",
+    "mongoose": "^5.7.5",
     "nodemon": "^1.18.11"
   }
 }
